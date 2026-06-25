@@ -1,0 +1,396 @@
+{
+  "users": [
+    {
+      "id": "user_b1a92a4e-36b5-4412-bac2-d0d65212ffe5",
+      "name": "TeamStack Test",
+      "email": "relaytouch.com+teamstacktest@gmail.com",
+      "createdAt": "2026-06-25T21:52:45.528Z",
+      "passwordHash": "779abd44adeded52db126a85f576e48e:d580a0e938216514c54c425f71e01cba38914beed1e56769f5495a9861cf586d00f320d147d5ed1c6e53596993eeb22953cff1c1855ecdc54e03b00235b2f499",
+      "emailVerifiedAt": "2026-06-25T21:53:29.002Z",
+      "verificationTokenHash": null,
+      "verificationExpiresAt": null,
+      "updatedAt": "2026-06-25T21:52:45.528Z",
+      "lastVerificationSentAt": "2026-06-25T21:52:45.528Z",
+      "lastVerificationDelivery": "smtp",
+      "lastLoginAt": "2026-06-25T22:04:23.847Z"
+    },
+    {
+      "id": "user_1bb9d2d6-8486-4d65-880a-df44d667dc03",
+      "name": "johnny test",
+      "email": "formlyhq@gmail.com",
+      "createdAt": "2026-06-25T22:10:54.483Z",
+      "passwordHash": "27dd60312f0c5bb46bbbbf834b880472:6774124357c28ff48b70d2ee214047898c943a2786c62f940316debd8bf0cb5263c9a1582d945a3a29ad8c8b31ee79cc636f53d794da8bf19980668f20bf6de0",
+      "emailVerifiedAt": "2026-06-25T22:17:17.279Z",
+      "verificationTokenHash": null,
+      "verificationExpiresAt": null,
+      "updatedAt": "2026-06-25T22:10:54.483Z",
+      "lastVerificationSentAt": "2026-06-25T22:16:34.246Z",
+      "lastVerificationDelivery": "smtp",
+      "activeHubId": "hub_3543b7624ebd39b6801ea643",
+      "lastLoginAt": "2026-06-25T23:07:27.808Z"
+    },
+    {
+      "id": "user_118a215e-78bf-4298-ad17-cd1ab1b14f3c",
+      "name": "Verify UX Test",
+      "email": "relaytouch.com+verifyux1782426295@gmail.com",
+      "createdAt": "2026-06-25T22:24:55.782Z",
+      "passwordHash": "c783dc9999be410b1281e3b35e39961c:dbd61745fa4b795a5eddc820ed1a95e7e4440d227a2833490f063a59afb00d3d368d9605e6538b96c3edde18ec3034e64ff4a039bd6d074da9ae1ef4330ed246",
+      "emailVerifiedAt": "2026-06-25T22:25:25.909Z",
+      "verificationTokenHash": null,
+      "verificationExpiresAt": null,
+      "updatedAt": "2026-06-25T22:24:55.782Z",
+      "lastVerificationSentAt": "2026-06-25T22:24:55.782Z",
+      "lastVerificationDelivery": "smtp"
+    },
+    {
+      "id": "user_b9d3e663-1aa4-426d-8cd3-014c754d5d93",
+      "name": "dc don",
+      "email": "backupsmy367@gmail.com",
+      "createdAt": "2026-06-25T22:32:54.721Z",
+      "passwordHash": "9b441e1a5a7f1ea8f76317d30cab7421:4414b10fb518aa39904fa278e07b54126216cd21ad0844d5e89c12aa884edcfe064a982c8bbda54c2b0e713ced11a3159c99afd6a7d26534219e74f9b9be0c4d",
+      "emailVerifiedAt": "2026-06-25T22:36:42.425Z",
+      "verificationTokenHash": null,
+      "verificationExpiresAt": null,
+      "updatedAt": "2026-06-25T22:32:54.721Z",
+      "lastVerificationSentAt": "2026-06-25T22:35:25.663Z",
+      "lastVerificationDelivery": "smtp"
+    },
+    {
+      "id": "user_230ac207-e513-4ff4-95e4-f0b35ac328b3",
+      "name": "Hub Switch Test",
+      "email": "relaytouch.com+hubtest1782427974@gmail.com",
+      "createdAt": "2026-06-25T22:52:57.146Z",
+      "passwordHash": "ce82d5aa5121ba05790ac94e5eba3c6a:ee5c52a2582dd78dc4cfa07c5896b35e799da0caaedf235e54509d59b1897f1e880a8681678bbc27a7f56c5c6c185f6a74c386d11e0dd5119bb9c4caf29af641",
+      "emailVerifiedAt": "2026-06-25T22:52:59.845Z",
+      "verificationTokenHash": null,
+      "verificationExpiresAt": null,
+      "updatedAt": "2026-06-25T22:52:57.146Z",
+      "lastVerificationSentAt": "2026-06-25T22:52:57.146Z",
+      "lastVerificationDelivery": "smtp",
+      "activeHubId": "hub_3ed816897a8eeafe7904f69a",
+      "lastLoginAt": "2026-06-25T22:55:35.390Z"
+    }
+  ],
+  "hubs": [
+    {
+      "id": "hub_5a16b443039a53b94ddb8f74",
+      "ownerId": "user_b1a92a4e-36b5-4412-bac2-d0d65212ffe5",
+      "name": "TeamStack's Free Hub",
+      "fullName": "TeamStack's Free Hub",
+      "description": "Your first TeamStack hub for organizing work, files, proof, and team activity.",
+      "plan": "Free",
+      "memberLimit": 3,
+      "members": [
+        {
+          "userId": "user_b1a92a4e-36b5-4412-bac2-d0d65212ffe5",
+          "initials": "TT",
+          "name": "TeamStack Test",
+          "email": "relaytouch.com+teamstacktest@gmail.com",
+          "role": "Owner",
+          "status": "Active",
+          "joinedAt": "2026-06-25T21:53:29.002Z"
+        }
+      ],
+      "createdAt": "2026-06-25T21:53:29.002Z",
+      "updatedAt": "2026-06-25T21:53:29.002Z"
+    },
+    {
+      "id": "hub_3543b7624ebd39b6801ea643",
+      "ownerId": "user_1bb9d2d6-8486-4d65-880a-df44d667dc03",
+      "name": "Jus Soulfood",
+      "fullName": "Jus Soulfood",
+      "description": "Your first TeamStack hub for organizing work, files, proof, and team activity.",
+      "plan": "Free",
+      "memberLimit": 3,
+      "members": [
+        {
+          "userId": "user_1bb9d2d6-8486-4d65-880a-df44d667dc03",
+          "initials": "JT",
+          "name": "johnny test",
+          "email": "formlyhq@gmail.com",
+          "role": "Owner",
+          "status": "Active",
+          "joinedAt": "2026-06-25T22:17:17.279Z"
+        }
+      ],
+      "createdAt": "2026-06-25T22:17:17.279Z",
+      "updatedAt": "2026-06-25T23:16:18.254Z",
+      "data": {
+        "files": [
+          {
+            "icon": "link",
+            "name": "Youtube videos",
+            "detail": "YouTube.com",
+            "type": "Link",
+            "owner": "Azeem Khan",
+            "time": "Just now",
+            "href": "YouTube.com",
+            "fileName": "",
+            "fileSize": 0,
+            "source": "Link"
+          }
+        ],
+        "proof": [],
+        "chat": {
+          "channels": [
+            {
+              "id": "general",
+              "name": "general",
+              "detail": "Hub-wide discussion",
+              "joined": true
+            },
+            {
+              "id": "onboarding",
+              "name": "onboarding",
+              "detail": "Driver onboarding work",
+              "joined": true
+            },
+            {
+              "id": "deployment",
+              "name": "deployment",
+              "detail": "Release and monitoring",
+              "joined": true
+            },
+            {
+              "id": "testing",
+              "name": "testing",
+              "detail": "QA passes and blockers",
+              "joined": true
+            }
+          ],
+          "messagesByChannel": {},
+          "activeChannelId": "general"
+        },
+        "work": []
+      }
+    },
+    {
+      "id": "hub_ac58511b73f6bfb4c785e4c9",
+      "ownerId": "user_118a215e-78bf-4298-ad17-cd1ab1b14f3c",
+      "name": "Verify's Free Hub",
+      "fullName": "Verify's Free Hub",
+      "description": "Your first TeamStack hub for organizing work, files, proof, and team activity.",
+      "plan": "Free",
+      "memberLimit": 3,
+      "members": [
+        {
+          "userId": "user_118a215e-78bf-4298-ad17-cd1ab1b14f3c",
+          "initials": "VU",
+          "name": "Verify UX Test",
+          "email": "relaytouch.com+verifyux1782426295@gmail.com",
+          "role": "Owner",
+          "status": "Active",
+          "joinedAt": "2026-06-25T22:25:25.911Z"
+        }
+      ],
+      "createdAt": "2026-06-25T22:25:25.911Z",
+      "updatedAt": "2026-06-25T22:25:25.911Z"
+    },
+    {
+      "id": "hub_18be265e35f40a03dc0f0bb2",
+      "ownerId": "user_b9d3e663-1aa4-426d-8cd3-014c754d5d93",
+      "name": "dc's Free Hub",
+      "fullName": "dc's Free Hub",
+      "description": "Your first TeamStack hub for organizing work, files, proof, and team activity.",
+      "plan": "Free",
+      "memberLimit": 3,
+      "members": [
+        {
+          "userId": "user_b9d3e663-1aa4-426d-8cd3-014c754d5d93",
+          "initials": "DD",
+          "name": "dc don",
+          "email": "backupsmy367@gmail.com",
+          "role": "Owner",
+          "status": "Active",
+          "joinedAt": "2026-06-25T22:36:42.426Z"
+        }
+      ],
+      "createdAt": "2026-06-25T22:36:42.426Z",
+      "updatedAt": "2026-06-25T22:36:42.426Z"
+    },
+    {
+      "id": "hub_455d664314e2dc8bff836eae",
+      "ownerId": "user_230ac207-e513-4ff4-95e4-f0b35ac328b3",
+      "name": "Hub's Free Hub",
+      "fullName": "Hub's Free Hub",
+      "description": "Your first TeamStack hub for organizing work, files, proof, and team activity.",
+      "plan": "Free",
+      "memberLimit": 3,
+      "members": [
+        {
+          "userId": "user_230ac207-e513-4ff4-95e4-f0b35ac328b3",
+          "initials": "HS",
+          "name": "Hub Switch Test",
+          "email": "relaytouch.com+hubtest1782427974@gmail.com",
+          "role": "Owner",
+          "access": "Full hub, billing, settings",
+          "status": "Active",
+          "activity": "Just now",
+          "joinedAt": "2026-06-25T22:52:59.845Z"
+        }
+      ],
+      "data": {
+        "files": [],
+        "proof": [],
+        "chat": null,
+        "work": []
+      },
+      "createdAt": "2026-06-25T22:52:59.845Z",
+      "updatedAt": "2026-06-25T22:52:59.845Z"
+    },
+    {
+      "id": "hub_3ed816897a8eeafe7904f69a",
+      "ownerId": "user_230ac207-e513-4ff4-95e4-f0b35ac328b3",
+      "name": "Second Client Hub",
+      "fullName": "Second Client Hub",
+      "description": "Second hub settings only.",
+      "plan": "Standard",
+      "memberLimit": 3,
+      "members": [
+        {
+          "initials": "HS",
+          "name": "Hub Switch Test",
+          "role": "Owner",
+          "access": "Full hub, billing, settings",
+          "status": "Active",
+          "activity": "Just now"
+        },
+        {
+          "initials": "SH",
+          "name": "Second Hub Member",
+          "role": "Member",
+          "access": "Assigned and shared hub work",
+          "status": "Invited",
+          "activity": "Just now"
+        }
+      ],
+      "data": {
+        "files": [
+          {
+            "icon": "link",
+            "name": "Second Hub Link",
+            "detail": "https://example.com",
+            "type": "Link",
+            "owner": "Hub Switch Test",
+            "time": "Just now",
+            "href": "https://example.com",
+            "source": "Link"
+          }
+        ],
+        "proof": [
+          {
+            "icon": "file",
+            "name": "Second Hub Proof",
+            "type": "Approval record",
+            "work": "Second Hub Work",
+            "status": "Pending",
+            "meta": "Hub Switch Test · Just now"
+          }
+        ],
+        "chat": {
+          "channels": [
+            {
+              "id": "general",
+              "name": "general",
+              "detail": "Hub-wide discussion",
+              "joined": true
+            }
+          ],
+          "messagesByChannel": {
+            "general": [
+              {
+                "id": "test-message",
+                "userId": "azeem",
+                "createdAt": "2026-06-25T22:00:00.000Z",
+                "text": "Second hub only chat",
+                "attachments": [],
+                "replies": []
+              }
+            ]
+          },
+          "activeChannelId": "general"
+        },
+        "work": [
+          {
+            "name": "Second Hub Work",
+            "owner": "Hub Switch Test",
+            "due": "Jul 1",
+            "progress": 0,
+            "status": "To Do",
+            "crop": "profile",
+            "comments": 0
+          }
+        ]
+      },
+      "createdAt": "2026-06-25T22:53:27.810Z",
+      "updatedAt": "2026-06-25T22:54:06.103Z"
+    },
+    {
+      "id": "hub_e138cfd4ef38acd2fa53bc98",
+      "ownerId": "user_1bb9d2d6-8486-4d65-880a-df44d667dc03",
+      "name": "Jus Seafood",
+      "fullName": "Jus Seafood",
+      "description": "TeamStack hub workspace.",
+      "plan": "Standard",
+      "memberLimit": 3,
+      "members": [
+        {
+          "userId": "user_1bb9d2d6-8486-4d65-880a-df44d667dc03",
+          "initials": "JT",
+          "name": "johnny test",
+          "email": "formlyhq@gmail.com",
+          "role": "Owner",
+          "access": "Full hub, billing, settings",
+          "status": "Active",
+          "activity": "Just now",
+          "joinedAt": "2026-06-25T23:11:33.102Z"
+        }
+      ],
+      "data": {
+        "files": [],
+        "proof": [],
+        "chat": null,
+        "work": []
+      },
+      "createdAt": "2026-06-25T23:11:33.102Z",
+      "updatedAt": "2026-06-25T23:11:33.102Z"
+    }
+  ],
+  "activity": [
+    {
+      "id": "activity_7d5e88cf53e7dd5e87eb48b2",
+      "userId": "user_b1a92a4e-36b5-4412-bac2-d0d65212ffe5",
+      "hubId": "hub_5a16b443039a53b94ddb8f74",
+      "type": "created_free_hub",
+      "createdAt": "2026-06-25T21:53:29.002Z"
+    },
+    {
+      "id": "activity_59b40271f0e9bcc3422b3b1c",
+      "userId": "user_1bb9d2d6-8486-4d65-880a-df44d667dc03",
+      "hubId": "hub_3543b7624ebd39b6801ea643",
+      "type": "created_free_hub",
+      "createdAt": "2026-06-25T22:17:17.279Z"
+    },
+    {
+      "id": "activity_3803518f712df6c5b538d2ed",
+      "userId": "user_118a215e-78bf-4298-ad17-cd1ab1b14f3c",
+      "hubId": "hub_ac58511b73f6bfb4c785e4c9",
+      "type": "created_free_hub",
+      "createdAt": "2026-06-25T22:25:25.911Z"
+    },
+    {
+      "id": "activity_8f4fe787b27e6d69a97bd6d4",
+      "userId": "user_b9d3e663-1aa4-426d-8cd3-014c754d5d93",
+      "hubId": "hub_18be265e35f40a03dc0f0bb2",
+      "type": "created_free_hub",
+      "createdAt": "2026-06-25T22:36:42.427Z"
+    },
+    {
+      "id": "activity_c0ba00427b7c261f92a6eddb",
+      "userId": "user_230ac207-e513-4ff4-95e4-f0b35ac328b3",
+      "hubId": "hub_455d664314e2dc8bff836eae",
+      "type": "created_free_hub",
+      "createdAt": "2026-06-25T22:52:59.845Z"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { PhotoAvatar } from "../../../components/DashboardMockup";
 import { createHubChatTransport } from "../../../lib/hubChatTransport";
+import { readHubData, writeHubData } from "../../../lib/hubDataClient";
 
 const members = [
   { id: "azeem", crop: "azeem", name: "Azeem Khan", handle: "Azeem", role: "Owner" },
@@ -67,6 +68,8 @@ export default function ChatPage() {
   const [newChannelName, setNewChannelName] = useState("");
   const [threadMessageId, setThreadMessageId] = useState(null);
   const [replyDraft, setReplyDraft] = useState("");
+  const [hydrated, setHydrated] = useState(false);
+  const [hubName, setHubName] = useState("Hub");
   const transportRef = useRef(null);
   const fileRef = useRef(null);
   const endRef = useRef(null);
@@ -79,6 +82,37 @@ export default function ChatPage() {
     ? members.filter(member => member.handle.toLowerCase().startsWith(mentionQuery))
     : [];
   const canSend = Boolean(draft.trim());
+
+  useEffect(() => {
+    const loadChat = async () => {
+      setHydrated(false);
+      const hubResponse = await fetch("/api/hub", { cache: "no-store" }).catch(() => null);
+      const hubPayload = await hubResponse?.json().catch(() => ({}));
+      setHubName(hubPayload?.hub?.fullName || "Hub");
+      const savedChat = await readHubData("chat", null);
+      if (savedChat?.channels && savedChat?.messagesByChannel) {
+        setChannels(savedChat.channels);
+        setMessagesByChannel(savedChat.messagesByChannel);
+        setActiveChannelId(savedChat.activeChannelId || "general");
+      } else {
+        setChannels(initialChannels);
+        setMessagesByChannel({});
+        setActiveChannelId("general");
+      }
+      setHydrated(true);
+    };
+    const onStorage = event => {
+      if (event.detail?.key === "teamstack.activeHub") loadChat();
+    };
+    loadChat();
+    window.addEventListener("teamstack:storage", onStorage);
+    return () => window.removeEventListener("teamstack:storage", onStorage);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    writeHubData("chat", { channels, messagesByChannel, activeChannelId });
+  }, [channels, messagesByChannel, activeChannelId, hydrated]);
 
   useEffect(() => {
     transportRef.current = createHubChatTransport(event => {
@@ -169,7 +203,7 @@ export default function ChatPage() {
   return (
     <div className={`grid h-full min-h-0 overflow-hidden bg-white ${threadMessage ? "lg:grid-cols-[230px_minmax(0,1fr)_340px]" : "lg:grid-cols-[230px_minmax(0,1fr)]"}`}>
         <aside className="flex min-h-0 flex-col border-r border-line bg-[#f8fafc] p-3">
-          <div className="px-2 pb-4 pt-2"><div className="flex items-center gap-2"><h1 className="text-[18px] font-bold tracking-[-.03em]">Hub Chat</h1><span className="h-2 w-2 rounded-full bg-emerald-500" /></div><p className="mt-1 text-[10px] text-muted">Aleet · Driver Portal</p></div>
+          <div className="px-2 pb-4 pt-2"><div className="flex items-center gap-2"><h1 className="text-[18px] font-bold tracking-[-.03em]">Hub Chat</h1><span className="h-2 w-2 rounded-full bg-emerald-500" /></div><p className="mt-1 text-[10px] text-muted">{hubName}</p></div>
           <div className="flex items-center gap-2 rounded-lg border border-line bg-white px-3 py-2.5"><Search size={14} className="text-slate-400" /><input className="w-full bg-transparent text-[11px] outline-none" placeholder="Search conversations" /></div>
           <div className="mb-2 mt-5 flex items-center justify-between px-2"><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Channels</p><button onClick={() => setChannelModal(true)} aria-label="Create channel" className="grid h-7 w-7 place-items-center rounded-md hover:bg-white hover:text-brand"><Plus size={15} /></button></div>
           <div className="min-h-0 flex-1 overflow-y-auto">

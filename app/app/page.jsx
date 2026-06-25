@@ -1,10 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import {
   Activity, CalendarDays, CheckCircle2, CircleAlert, ClipboardCheck,
   FileCheck2, FileText, Link2, ListTodo, Plus, Users
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Status } from "../../components/AppShell";
 import { PhotoAvatar } from "../../components/DashboardMockup";
+import { readHubData } from "../../lib/hubDataClient";
+import { defaultHub, defaultMembers } from "../../lib/localStore";
 
 const summaryCards = [
   {
@@ -27,12 +32,6 @@ const summaryCards = [
   { title: "Due Soon", value: "3", icon: CalendarDays, tone: "slate", note: "This week" }
 ];
 
-const currentWork = [
-  ["Driver Onboarding Flow", "Azeem", "Jun 24", "On Track", "green", "azeem"],
-  ["AQD Deployment", "Azeem", "Jun 24", "On Track", "green", "azeem"],
-  ["Driver Presence Testing", "QA Team", "Jun 22", "At Risk", "orange", "qa"]
-];
-
 const schedule = [
   ["Tue", "Jun 18", "5:00 PM – 8:00 PM"],
   ["Wed", "Jun 19", "5:00 PM – 8:00 PM"],
@@ -43,12 +42,6 @@ const updates = [
   ["Driver Portal connected", "Azeem · 2h ago"],
   ["AQD fix deployed", "Azeem · 4h ago"],
   ["Testing started", "QA Team · 6h ago"]
-];
-
-const files = [
-  ["Driver Portal Repo", Link2],
-  ["Deployment Notes", FileText],
-  ["Testing Results", FileText]
 ];
 
 const activity = [
@@ -93,6 +86,32 @@ function Panel({ title, action, children, className = "" }) {
 }
 
 export default function HubOverviewPage() {
+  const [hub, setHub] = useState(defaultHub);
+  const [memberCount, setMemberCount] = useState(defaultMembers.length);
+  const [currentWork, setCurrentWork] = useState([]);
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    const syncHubState = async () => {
+      const response = await fetch("/api/hub", { cache: "no-store" });
+      if (!response.ok) return;
+      const data = await response.json();
+      setHub(data.hub || defaultHub);
+      setMemberCount(data.hub?.members?.length || defaultMembers.length);
+      const workData = await readHubData("work", []);
+      const fileData = await readHubData("files", []);
+      setCurrentWork(workData.slice(0, 3));
+      setFiles(fileData.slice(0, 3));
+    };
+    syncHubState();
+    window.addEventListener("teamstack:storage", syncHubState);
+    return () => {
+      window.removeEventListener("teamstack:storage", syncHubState);
+    };
+  }, []);
+
+  const cards = summaryCards.map(card => card.title === "Members" ? { ...card, value: String(memberCount) } : card);
+
   return (
     <div className="space-y-4">
       <section className="pb-6 pt-2 sm:pb-8 sm:pt-3">
@@ -101,12 +120,12 @@ export default function HubOverviewPage() {
           Good afternoon.
         </h1>
         <p className="mt-3 max-w-[620px] text-[14px] leading-6 text-muted">
-          Here’s what’s moving inside Launch Crew Aleet Driver Portal.
+          {hub.description}
         </p>
       </section>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {summaryCards.map((card) => (
+        {cards.map((card) => (
           <SummaryCard key={card.title} card={card} />
         ))}
       </div>
@@ -114,19 +133,20 @@ export default function HubOverviewPage() {
       <div className="grid gap-4 xl:grid-cols-[1.35fr_1.05fr_.95fr]">
         <Panel title="Current Work" action={{ href: "/app/work", label: "View all" }} className="min-h-[420px]">
           <div className="divide-y divide-line">
-            {currentWork.map(([name, owner, date, status, tone, crop]) => (
+            {currentWork.length === 0 && <p className="py-8 text-center text-[11px] text-muted">No current work in this hub yet.</p>}
+            {currentWork.map(({ name, owner, due, status, crop }) => (
               <div key={name} className="grid grid-cols-[1fr_auto] items-center gap-3 py-4 first:pt-1">
                 <div className="flex min-w-0 items-center gap-3">
-                  <PhotoAvatar crop={crop} size={26} />
+                  <PhotoAvatar crop={crop || "profile"} size={26} />
                   <div className="min-w-0">
                     <h3 className="truncate text-[12px] font-bold">{name}</h3>
                     <p className="mt-1 flex gap-4 text-[9px] text-muted">
                       <span>{owner}</span>
-                      <span>{date}</span>
+                      <span>{due}</span>
                     </p>
                   </div>
                 </div>
-                <Status tone={tone}>{status}</Status>
+                <Status tone={status === "Blocked" ? "orange" : status === "Completed" ? "green" : "blue"}>{status}</Status>
               </div>
             ))}
           </div>
@@ -172,12 +192,14 @@ export default function HubOverviewPage() {
 
           <Panel title="Files" action={{ href: "/app/files", label: "View all" }}>
             <div className="divide-y divide-line">
-              {files.map(([title, Icon]) => (
-                <div key={title} className="flex items-center gap-3 py-3 first:pt-1 text-[11px] font-bold">
+              {files.length === 0 && <p className="py-6 text-center text-[11px] text-muted">No files in this hub yet.</p>}
+              {files.map(({ name, icon }) => {
+                const Icon = icon === "link" ? Link2 : FileText;
+                return <div key={name} className="flex items-center gap-3 py-3 first:pt-1 text-[11px] font-bold">
                   <Icon size={14} className="text-slate-500" />
-                  {title}
+                  {name}
                 </div>
-              ))}
+              })}
             </div>
           </Panel>
         </div>

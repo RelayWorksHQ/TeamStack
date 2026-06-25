@@ -6,7 +6,7 @@ import {
   Link2, ListTodo, MessageSquareText, Plus, Settings,
   ShieldCheck, Users, Workflow
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Brand } from "./Brand";
 
 export const navItems = [
@@ -21,7 +21,7 @@ export const navItems = [
   ["Settings", Settings, "/app/settings"]
 ];
 
-const hubs = ["Aleet", "Nutree", "Honey Crust", "Fonic", "Teamstack"];
+const demoHubs = ["Aleet", "Nutree", "Honey Crust", "Fonic", "Teamstack"];
 
 export function PhotoAvatar({ crop = "profile", size = 24, className = "" }) {
   const crops = {
@@ -49,9 +49,13 @@ export function PhotoAvatar({ crop = "profile", size = 24, className = "" }) {
   );
 }
 
-export function HubSwitcher({ full = false }) {
+export function HubSwitcher({ full = false, hubName = "Launch Crew — Aleet Driver Portal", hubs, activeHubId, onSelectHub, onNewHub }) {
   const [open, setOpen] = useState(false);
-  const [hub, setHub] = useState("Launch Crew — Aleet Driver Portal");
+  const [hub, setHub] = useState(hubName);
+  useEffect(() => {
+    setHub(hubName);
+  }, [hubName]);
+  const items = Array.isArray(hubs) ? hubs : demoHubs.map(name => ({ id: name, fullName: name, name }));
   return (
     <div className="relative">
       <button onClick={() => setOpen(!open)} className={`flex items-center gap-2 rounded-xl border border-transparent px-2 py-2 text-left font-bold hover:border-line hover:bg-slate-50 ${full ? "text-sm sm:text-base" : "max-w-[260px] text-[12px]"}`}>
@@ -60,11 +64,15 @@ export function HubSwitcher({ full = false }) {
       {open && (
         <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-2xl border border-line bg-white p-2 shadow-soft">
           <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">Switch hub</p>
-          {hubs.map((name) => (
-            <button key={name} onClick={() => { setHub(name); setOpen(false); }} className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold hover:bg-blue-50 hover:text-brand">
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-slate-100 text-[11px] font-black">{name[0]}</span>{name}
+          {items.length === 0 && <p className="px-3 py-2 text-[11px] text-muted">No hubs yet.</p>}
+          {items.map((item) => (
+            <button key={item.id} onClick={() => { setHub(item.fullName || item.name); setOpen(false); onSelectHub?.(item.id); }} className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold hover:bg-blue-50 hover:text-brand ${activeHubId === item.id ? "bg-blue-50 text-brand" : ""}`}>
+              <span className="grid h-7 w-7 place-items-center rounded-lg bg-slate-100 text-[11px] font-black">{(item.name || item.fullName || "H")[0]}</span>{item.fullName || item.name}
             </button>
           ))}
+          {onNewHub && <button onClick={() => { setOpen(false); onNewHub(); }} className="mt-1 flex w-full items-center gap-3 rounded-xl border border-dashed border-line px-3 py-2.5 text-left text-sm font-bold text-brand hover:bg-blue-50">
+            <span className="grid h-7 w-7 place-items-center rounded-lg bg-blue-50 text-[13px] font-black">+</span>New Hub
+          </button>}
         </div>
       )}
     </div>

@@ -69,6 +69,20 @@
       "lastVerificationDelivery": "smtp",
       "activeHubId": "hub_3ed816897a8eeafe7904f69a",
       "lastLoginAt": "2026-06-25T22:55:35.390Z"
+    },
+    {
+      "id": "user_2b0d6d3e-f0a6-4307-a38c-de32691f41e5",
+      "name": "nova",
+      "email": "platora.hq@gmail.com",
+      "createdAt": "2026-06-25T23:59:40.607Z",
+      "passwordHash": "c1a4f1a78ceed4c3d97259eae0c436fe:ad3e2af0a11cbe36d01ae19ed97c3b1e98e8d9680b61da5d4194a877468f2197807381c5951515421142e95f03a31a9f95991f79f1d5fb03d867e63cf743b8ce",
+      "emailVerifiedAt": null,
+      "verificationTokenHash": "73f328a70dbb9b503c861382f18f811b0edb59774ce7e13195bc5844451e3300",
+      "verificationExpiresAt": "2026-06-26T23:59:40.459Z",
+      "updatedAt": "2026-06-25T23:59:40.607Z",
+      "lastVerificationSentAt": "2026-06-25T23:59:40.607Z",
+      "lastVerificationDelivery": "smtp",
+      "lastVerificationLink": "http://localhost:3000/api/auth/verify?token=7fe124e93082df5d71f897a873bc99e033d996ed01de8c41db579ef77954beb6"
     }
   ],
   "hubs": [
